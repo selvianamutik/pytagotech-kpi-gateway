@@ -1,25 +1,22 @@
 // Konfigurasi daftar anggota tim
 export const MEMBERS = [
-  "Budi Santoso",
-  "Siti Nurhaliza",
-  "Ahmad Rizki",
-  "Dewi Lestari",
-  "Eko Prasetyo",
-  "Fitri Handayani",
-  "Gunawan Wijaya",
-  "Hana Permata"
+  "Adi",
+  "Figo",
+  "Feby",
+  "Naufal",
+  "Nabila",
+  "Rifqy",
+  "Reza",
+  "Udin",
 ];
 
 // Konfigurasi daftar divisi
 export const DIVISIONS = [
-  "Engineering",
+  "Developer",
   "Marketing",
-  "Product",
-  "Design",
-  "Operations",
-  "Sales",
-  "HR",
-  "Finance"
+  "Marketing Production",
+  "Operations & Finance",
+  "Social Media & Admin",
 ];
 
 // Google Apps Script Web App URL

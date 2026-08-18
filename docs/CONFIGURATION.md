@@ -331,11 +331,11 @@ Apps Script otomatis membuat sheet baru untuk divisi yang belum ada.
 File: `google-apps-script/Code.gs`
 
 ```javascript
-// Default header
-sheet.appendRow(["Timestamp", "Nama", "Divisi", "Kegiatan", "Persentase (%)"]);
+// Default header (dengan kolom Bulan untuk filtering)
+sheet.appendRow(["Timestamp", "Bulan", "Nama", "Divisi", "Kegiatan", "Persentase (%)"]);
 
 // Tambah kolom baru (misal: Catatan)
-sheet.appendRow(["Timestamp", "Nama", "Divisi", "Kegiatan", "Persentase (%)", "Catatan"]);
+sheet.appendRow(["Timestamp", "Bulan", "Nama", "Divisi", "Kegiatan", "Persentase (%)", "Catatan"]);
 ```
 
 Jangan lupa update frontend untuk kirim field baru.
@@ -344,7 +344,7 @@ Jangan lupa update frontend untuk kirim field baru.
 
 ```javascript
 // Warna header
-const headerRange = sheet.getRange(1, 1, 1, 5);
+const headerRange = sheet.getRange(1, 1, 1, 6);
 headerRange.setBackground("#4285f4"); // Biru Google
 headerRange.setFontColor("#ffffff");
 
@@ -356,10 +356,11 @@ headerRange.setBackground("#1e40af"); // Ganti dengan hex color brand
 
 ```javascript
 sheet.setColumnWidth(1, 150); // Timestamp - 150px
-sheet.setColumnWidth(2, 150); // Nama - 150px
-sheet.setColumnWidth(3, 120); // Divisi - 120px
-sheet.setColumnWidth(4, 300); // Kegiatan - 300px (paling lebar)
-sheet.setColumnWidth(5, 100); // Persentase - 100px
+sheet.setColumnWidth(2, 100); // Bulan - 100px
+sheet.setColumnWidth(3, 150); // Nama - 150px
+sheet.setColumnWidth(4, 120); // Divisi - 120px
+sheet.setColumnWidth(5, 300); // Kegiatan - 300px (paling lebar)
+sheet.setColumnWidth(6, 100); // Persentase - 100px
 ```
 
 ---

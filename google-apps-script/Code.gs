@@ -11,7 +11,7 @@ function doPost(e) {
     // Proses setiap baris data
     data.forEach(row => {
       // Validasi field required
-      if (!row.nama || !row.divisi || !row.kegiatan || row.persentase === undefined) {
+      if (!row.nama || !row.divisi || !row.kegiatan || row.persentase === undefined || !row.bulan) {
         throw new Error("Field wajib tidak lengkap");
       }
       
@@ -28,20 +28,21 @@ function doPost(e) {
       if (!sheet) {
         sheet = ss.insertSheet(row.divisi);
         // Tambahkan header
-        sheet.appendRow(["Timestamp", "Nama", "Divisi", "Kegiatan", "Persentase (%)"]);
+        sheet.appendRow(["Timestamp", "Bulan", "Nama", "Divisi", "Kegiatan", "Persentase (%)"]);
         
         // Format header
-        const headerRange = sheet.getRange(1, 1, 1, 5);
+        const headerRange = sheet.getRange(1, 1, 1, 6);
         headerRange.setFontWeight("bold");
         headerRange.setBackground("#4285f4");
         headerRange.setFontColor("#ffffff");
         
         // Set column widths
         sheet.setColumnWidth(1, 150); // Timestamp
-        sheet.setColumnWidth(2, 150); // Nama
-        sheet.setColumnWidth(3, 120); // Divisi
-        sheet.setColumnWidth(4, 300); // Kegiatan
-        sheet.setColumnWidth(5, 100); // Persentase
+        sheet.setColumnWidth(2, 100); // Bulan
+        sheet.setColumnWidth(3, 150); // Nama
+        sheet.setColumnWidth(4, 120); // Divisi
+        sheet.setColumnWidth(5, 300); // Kegiatan
+        sheet.setColumnWidth(6, 100); // Persentase
         
         // Freeze header row
         sheet.setFrozenRows(1);
@@ -50,6 +51,7 @@ function doPost(e) {
       // Tambahkan data baru
       sheet.appendRow([
         row.timestamp,
+        row.bulan,
         row.nama,
         row.divisi,
         row.kegiatan,

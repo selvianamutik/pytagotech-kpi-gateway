@@ -71,7 +71,8 @@ export default function KPIForm() {
     setLoading(true)
 
     try {
-      const timestamp = new Date().toLocaleString('id-ID', {
+      const now = new Date()
+      const timestamp = now.toLocaleString('id-ID', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
@@ -81,10 +82,17 @@ export default function KPIForm() {
         hour12: false
       })
 
+      // Generate bulan in format "YYYY-MM" for easy filtering
+      const bulan = now.toLocaleString('id-ID', {
+        year: 'numeric',
+        month: '2-digit'
+      }).replace('/', '-')
+
       const data = kegiatan
         .filter(k => k.kegiatan.trim() !== '')
         .map(k => ({
           timestamp,
+          bulan,
           nama,
           divisi,
           kegiatan: k.kegiatan,

@@ -62,6 +62,7 @@ Content-Type: application/json
 [
   {
     "timestamp": "18/08/2026 10:30:00",
+    "bulan": "2026-08",
     "nama": "Budi Santoso",
     "divisi": "Engineering",
     "kegiatan": "Deploy fitur login",
@@ -69,6 +70,7 @@ Content-Type: application/json
   },
   {
     "timestamp": "18/08/2026 10:30:00",
+    "bulan": "2026-08",
     "nama": "Budi Santoso",
     "divisi": "Engineering",
     "kegiatan": "Review PR backend",
@@ -93,10 +95,10 @@ Setelah data pertama kali masuk, Apps Script akan otomatis:
 3. Menyimpan setiap kegiatan sebagai baris terpisah
 
 ### Format Sheet
-| Timestamp | Nama | Divisi | Kegiatan | Persentase (%) |
-|-----------|------|---------|----------|----------------|
-| 18/08/2026 10:30:00 | Budi Santoso | Engineering | Deploy fitur login | 100 |
-| 18/08/2026 10:30:00 | Budi Santoso | Engineering | Review PR backend | 75 |
+| Timestamp | Bulan | Nama | Divisi | Kegiatan | Persentase (%) |
+|-----------|-------|------|---------|----------|----------------|
+| 18/08/2026 10:30:00 | 2026-08 | Budi Santoso | Engineering | Deploy fitur login | 100 |
+| 18/08/2026 10:30:00 | 2026-08 | Budi Santoso | Engineering | Review PR backend | 75 |
 
 ## Troubleshooting
 

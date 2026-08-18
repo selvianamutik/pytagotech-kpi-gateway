@@ -56,6 +56,7 @@
 [
   {
     "timestamp": "18/08/2026 10:30:00",
+    "bulan": "2026-08",
     "nama": "Budi Santoso",
     "divisi": "Engineering",
     "kegiatan": "Deploy fitur login",
@@ -66,9 +67,9 @@
 
 **Spreadsheet Schema:**
 ```
-| Timestamp           | Nama          | Divisi      | Kegiatan              | Persentase (%) |
-|---------------------|---------------|-------------|-----------------------|----------------|
-| 18/08/2026 10:30:00 | Budi Santoso  | Engineering | Deploy fitur login    | 100            |
+| Timestamp           | Bulan   | Nama          | Divisi      | Kegiatan              | Persentase (%) |
+|---------------------|---------|---------------|-------------|-----------------------|----------------|
+| 18/08/2026 10:30:00 | 2026-08 | Budi Santoso  | Engineering | Deploy fitur login    | 100            |
 ```
 
 ## Security Model
