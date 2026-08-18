@@ -130,9 +130,16 @@ export default function KPIForm() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 flex items-center justify-center">
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-blue-700">
-            Pytagotech KPI Gateway
-          </CardTitle>
+          <div className="flex items-center gap-4 mb-2">
+            <img 
+              src="/logo-192.png" 
+              alt="Pytagotech Logo" 
+              className="w-12 h-12 object-contain"
+            />
+            <CardTitle className="text-2xl font-bold text-blue-700">
+              Pytagotech KPI Gateway
+            </CardTitle>
+          </div>
           <CardDescription>
             Laporkan kegiatan dan progress KPI tim Anda
           </CardDescription>
