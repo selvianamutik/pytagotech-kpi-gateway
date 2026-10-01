@@ -1,6 +1,7 @@
 // Konfigurasi daftar anggota tim
 export const MEMBERS = [
   "Adi",
+  "Fira",
   "Mellan",
   "Nisa",
   "Naufal",
