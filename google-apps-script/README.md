@@ -1,142 +1,71 @@
 # Google Apps Script - Deployment Guide
 
-## Setup Google Spreadsheet
+## Setup Google Spreadsheet & Google Drive
 
-1. Buat Google Spreadsheet baru di Google Drive
+1. Buat Google Spreadsheet baru di Google Drive (atau gunakan yang sudah ada)
 2. Beri nama: **Pytagotech KPI Data**
 3. Buka spreadsheet tersebut
 
-## Deploy Apps Script
+## Deploy Apps Script Baru / Update Deployment
 
 ### Langkah 1: Buka Script Editor
 1. Di Google Spreadsheet, klik **Extensions** > **Apps Script**
-2. Hapus kode default yang ada
-3. Copy seluruh kode dari file `Code.gs` di folder ini
-4. Paste ke Script Editor
-5. Simpan dengan nama: **Pytagotech KPI Gateway**
+2. Salin seluruh isi dari file [`google-apps-script/Code.gs`](file:///google-apps-script/Code.gs)
+3. Timpa (paste) ke Script Editor
+4. Klik tombol **Save** (icon disket)
 
-### Langkah 2: Deploy sebagai Web App
+### Langkah 2: Deploy / Update Version
+Jika **pertama kali deploy**:
 1. Klik **Deploy** > **New deployment**
-2. Klik icon ⚙️ (gear) di samping "Select type"
-3. Pilih **Web app**
-4. Isi konfigurasi:
-   - **Description**: Pytagotech KPI Gateway API
+2. Klik icon ⚙️ (gear) di samping "Select type" > Pilih **Web app**
+3. Konfigurasi:
+   - **Description**: Pytagotech KPI Gateway API v2
    - **Execute as**: Me (email Anda)
    - **Who has access**: Anyone
-5. Klik **Deploy**
-6. Klik **Authorize access**
-7. Pilih akun Google Anda
-8. Klik **Advanced** > **Go to [Project Name] (unsafe)**
-9. Klik **Allow**
-10. Copy **Web app URL** yang diberikan
+4. Klik **Deploy**
+5. Klik **Authorize access** (Perlu izin akses Spreadsheet dan Google Drive untuk upload file/gambar)
+6. Pilih akun Google Anda > Klik **Advanced** > Klik **Go to [Project Name] (unsafe)** > Klik **Allow**
+7. Copy **Web app URL** yang diberikan
+
+Jika **mengupdate deployment yang sudah ada**:
+1. Klik **Deploy** > **Manage deployments**
+2. Klik icon ✏️ (edit) pada deployment aktif
+3. Pada dropdown Version, pilih **New version**
+4. Klik **Deploy**
 
 ### Langkah 3: Konfigurasi URL di Aplikasi
-1. Buka file `.env.example` di root project
-2. Copy file tersebut dan rename menjadi `.env`
-3. Paste URL Web App yang sudah di-copy:
-   ```
-   VITE_GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
-   ```
-
-## Testing
-
-### Test via Browser
-Buka URL Web App di browser. Jika berhasil, akan muncul response:
-```json
-{
-  "status": "success",
-  "message": "Pytagotech KPI Gateway API is running"
-}
+Paste URL Web App di file `.env`:
+```env
+VITE_GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec
 ```
 
-### Test via Postman/Thunder Client
-**Method**: POST  
-**URL**: [Your Web App URL]  
-**Headers**:
-```
-Content-Type: application/json
-```
+---
 
-**Body** (raw JSON):
-```json
-[
-  {
-    "timestamp": "18/08/2026 10:30:00",
-    "bulan": "2026-08",
-    "nama": "Budi Santoso",
-    "divisi": "Engineering",
-    "kegiatan": "Deploy fitur login",
-    "persentase": 100
-  },
-  {
-    "timestamp": "18/08/2026 10:30:00",
-    "bulan": "2026-08",
-    "nama": "Budi Santoso",
-    "divisi": "Engineering",
-    "kegiatan": "Review PR backend",
-    "persentase": 75
-  }
-]
-```
+## Struktur Spreadsheet (13 Kolom)
 
-Expected Response:
-```json
-{
-  "status": "success",
-  "message": "Data berhasil disimpan"
-}
-```
+Saat laporan pertama kali dikirimkan untuk tiap divisi, Google Apps Script akan otomatis membuat sheet sesuai nama divisi dengan 13 kolom:
 
-## Struktur Spreadsheet
+| No | Kolom | Keterangan |
+|:--:|---|---|
+| 1 | `Timestamp` | Waktu submit laporan |
+| 2 | `Bulan` | Format `YYYY-MM` |
+| 3 | `Nama` | Nama anggota tim |
+| 4 | `Divisi` | Nama divisi |
+| 5 | `Project` | Nama project (`Apps Konseling Teduh` / `GMS` untuk Developer) |
+| 6 | `KPI Task` | Nama indikator KPI yang dipilih |
+| 7 | `Nilai WA` | Jumlah kontak outreach WA |
+| 8 | `Nilai IG` | Jumlah kontak outreach Instagram |
+| 9 | `Nilai Tele` | Jumlah kontak outreach Telegram |
+| 10 | `Nilai Angka` | Nilai capaian numerik / engagement |
+| 11 | `Persentase (%)` | Capaian persentase 0-100% |
+| 12 | `Kendala / Masalah` | Catatan kendala, isu, atau blocker hari ini |
+| 13 | `File URL` | Link Google Drive untuk file/gambar yang diupload |
 
-Setelah data pertama kali masuk, Apps Script akan otomatis:
-1. Membuat sheet baru dengan nama divisi (misal: "Engineering")
-2. Menambahkan header dengan format yang rapi
-3. Menyimpan setiap kegiatan sebagai baris terpisah
+---
 
-### Format Sheet
-| Timestamp | Bulan | Nama | Divisi | Kegiatan | Persentase (%) |
-|-----------|-------|------|---------|----------|----------------|
-| 18/08/2026 10:30:00 | 2026-08 | Budi Santoso | Engineering | Deploy fitur login | 100 |
-| 18/08/2026 10:30:00 | 2026-08 | Budi Santoso | Engineering | Review PR backend | 75 |
+## Folder Google Drive Otomatis
 
-## Troubleshooting
-
-### Error: "Script function not found: doPost"
-- Pastikan nama function di script adalah `doPost` (case-sensitive)
-- Pastikan sudah save script sebelum deploy
-
-### Error: "Authorization required"
-- Ulangi langkah authorize access
-- Pastikan memilih **Execute as: Me** dan **Who has access: Anyone**
-
-### Data tidak muncul di Spreadsheet
-- Cek di Apps Script Editor > **Executions** untuk melihat log error
-- Pastikan format JSON yang dikirim sesuai dengan contoh
-- Cek **View** > **Logs** untuk melihat detail error
-
-### CORS Error di Browser
-- Ini normal karena Google Apps Script
-- Aplikasi sudah menggunakan `mode: 'no-cors'` untuk mengatasi ini
-- Data tetap akan tersimpan meski response tidak terbaca
-
-## Update Deployment
-
-Jika ada perubahan kode:
-1. Edit kode di Apps Script Editor
-2. Save perubahan
-3. Klik **Deploy** > **Manage deployments**
-4. Klik ✏️ (edit icon) pada deployment aktif
-5. Pilih **New version**
-6. Klik **Deploy**
-
-URL Web App tetap sama, tidak perlu update di aplikasi.
-
-## Security Notes
-
-- **Execute as: Me** berarti script berjalan dengan permission akun Anda
-- **Anyone** berarti siapa saja dengan link bisa akses (sesuai requirement: no authentication)
-- Untuk production yang lebih secure, pertimbangkan:
-  - Membatasi access berdasarkan domain (Google Workspace)
-  - Menambahkan API key validation di script
-  - Menggunakan HTTPS only
+Untuk file dokumen (OPS) dan gambar konten (Social Media & Admin), Apps Script akan secara otomatis:
+1. Membuat folder bernama **`PYTAGOTECH KPI UPLOADS`** di Google Drive Anda jika belum ada.
+2. Menyimpan file/gambar yang dikirim ke folder tersebut.
+3. Memberikan akses viewable link dan mencantumkan link-nya pada kolom `File URL` di Google Sheets.
