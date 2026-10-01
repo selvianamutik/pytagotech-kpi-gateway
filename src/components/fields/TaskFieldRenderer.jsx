@@ -11,11 +11,11 @@ export default function TaskFieldRenderer({ taskConfig, data, onChange, disabled
     case FIELD_TYPES.OUTREACH:
       return <OutreachField data={data} onChange={onChange} disabled={disabled} />
 
-    case FIELD_TYPES.SOSMED_IMAGE:
-      return <SosmedImageField data={data} onChange={onChange} disabled={disabled} />
+    // case FIELD_TYPES.SOSMED_IMAGE:
+    //   return <SosmedImageField data={data} onChange={onChange} disabled={disabled} />
 
-    case FIELD_TYPES.UPLOAD_FILE:
-      return <UploadFileField data={data} onChange={onChange} disabled={disabled} />
+    // case FIELD_TYPES.UPLOAD_FILE:
+    //   return <UploadFileField data={data} onChange={onChange} disabled={disabled} />
 
     case FIELD_TYPES.ANGKA:
     default:
