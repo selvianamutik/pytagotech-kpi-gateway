@@ -36,13 +36,13 @@ export default function OutreachField({ data = {}, onChange, disabled = false })
       </div>
 
       <div className="space-y-1">
-        <Label className="text-xs text-gray-600">Telegram (Tele) *</Label>
+        <Label className="text-xs text-gray-600">Email *</Label>
         <Input
           type="number"
           min="0"
           placeholder="Jml kontak"
-          value={data.nilai_tele ?? ''}
-          onChange={(e) => handleChange('nilai_tele', e.target.value)}
+          value={data.nilai_email ?? ''}
+          onChange={(e) => handleChange('nilai_email', e.target.value)}
           disabled={disabled}
         />
       </div>

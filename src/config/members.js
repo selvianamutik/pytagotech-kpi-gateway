@@ -23,7 +23,7 @@ export const DIVISIONS = [
 // Tipe field khusus per task
 export const FIELD_TYPES = {
   ANGKA: "angka",               // Input angka realisasi + persentase
-  OUTREACH: "outreach",         // Input jumlah WA + IG + Tele (angka)
+  OUTREACH: "outreach",         // Input jumlah WA + IG + Email (angka)
   SOSMED_IMAGE: "sosmed_image", // Upload multiple gambar + angka engagement
   UPLOAD_FILE: "upload_file",   // Upload file dokumen
 };
@@ -37,12 +37,12 @@ export const DEVELOPER_PROJECTS = [
 // Definisi indikator KPI Marketing (Dipisah Harian vs Mingguan)
 const MARKETING_DAILY = [
   {
-    label: "Direct Selling Activity (Outreach WA/IG/Tele)",
+    label: "Direct Selling Activity (Outreach WA/IG/Email)",
     target: "500 prospects / bln",
     unit: "prospects",
     fieldType: FIELD_TYPES.OUTREACH,
-    formula: "Jumlah prospek dihubungi via WA, IG, dan Telegram",
-    description: "Aktivitas menjangkau calon klien secara langsung melalui WA, Instagram, dan Telegram.",
+    formula: "Jumlah prospek dihubungi via WA, IG, dan Email",
+    description: "Aktivitas menjangkau calon klien secara langsung melalui WA, Instagram, dan Email.",
   },
   {
     label: "Qualified Leads (Daily Intake)",

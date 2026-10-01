@@ -258,7 +258,7 @@ export default function KPIForm() {
           kpi_task: t.kpiTask,
           nilai_wa: t.fieldData?.nilai_wa || '',
           nilai_ig: t.fieldData?.nilai_ig || '',
-          nilai_tele: t.fieldData?.nilai_tele || '',
+          nilai_email: t.fieldData?.nilai_email || '',
           nilai_angka: t.fieldData?.nilai_angka || '',
           persentase: t.fieldData?.persentase !== undefined && t.fieldData?.persentase !== ''
             ? parseInt(t.fieldData.persentase)
