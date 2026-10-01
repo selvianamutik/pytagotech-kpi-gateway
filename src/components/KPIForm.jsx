@@ -27,8 +27,8 @@ export default function KPIForm() {
 
   const isDeveloper = divisi === 'Developer' || divisi === 'Produksi (Developer)'
 
-  // Mengembalikan list task yang tersedia untuk divisi (dan project jika developer)
-  const getAllTasksForDivisi = (divName, projName = '') => {
+  // Mengembalikan list task yang tersedia untuk divisi (dan project jika developer) berdasarkan tipe laporan
+  const getAllTasksForDivisi = (divName, projName = '', currentTipe = tipeLaporan) => {
     if (!divName) return []
     const divConfig = KPI_TASKS[divName]
     if (!divConfig) return []
@@ -36,15 +36,16 @@ export default function KPIForm() {
     const isDev = divName === 'Developer' || divName === 'Produksi (Developer)'
     if (isDev) {
       if (!projName) return []
-      return divConfig.tasks?.[projName] || []
+      const devTasksByPeriod = divConfig[currentTipe] || divConfig.harian
+      return devTasksByPeriod?.[projName] || []
     }
 
-    return Array.isArray(divConfig) ? divConfig : []
+    return divConfig[currentTipe] || (Array.isArray(divConfig) ? divConfig : [])
   }
 
   // Generate task list otomatis untuk laporan Mingguan
   const populateWeeklyTasks = (selectedDivisi, selectedProject = '') => {
-    const available = getAllTasksForDivisi(selectedDivisi, selectedProject)
+    const available = getAllTasksForDivisi(selectedDivisi, selectedProject, 'mingguan')
     if (available.length === 0) {
       setTasks([{ project: selectedProject, kpiTask: '', fieldData: {}, kendala: '' }])
       return
